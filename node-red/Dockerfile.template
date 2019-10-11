@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y \
   libnss3 \
   xvfb
 RUN JOBS=MAX npm install -g --production --unsafe-perm \
-  segmentio/nightmare
+  nightmare \
+  electron
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
   rpi.gpio \

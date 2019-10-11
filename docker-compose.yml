@@ -19,3 +19,12 @@ services:
       - "/dev/i2c-1:/dev/i2c-1"
     ports:
       - 80:80
+  rtl-amr:
+    build: ./rtl-amr
+    volumes:
+      - '/dev/bus/usb:/dev/bus/usb'
+    restart: always
+    privileged: true
+    network_mode: host
+    ports:
+      - 1234:1234
