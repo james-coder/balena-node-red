@@ -21,7 +21,7 @@ services:
       - 80:80
   rtl-amr:
     build: ./rtl-amr
-    volumes:
+    devices:
       - '/dev/bus/usb:/dev/bus/usb'
     restart: always
     privileged: true
