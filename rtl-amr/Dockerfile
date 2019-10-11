@@ -11,3 +11,8 @@ RUN cmake ../ -DDETACH_KERNEL_DRIVER=ON
 RUN make
 RUN make install
 
+WORKDIR /usr/src/app
+# This will copy all files in our root to the working  directory in the container
+COPY ./app ./
+
+CMD ["bash", "/usr/src/app/start.sh"]
