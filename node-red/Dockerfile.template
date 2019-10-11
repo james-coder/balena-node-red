@@ -34,10 +34,6 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/local/bin /usr/local/bin
 COPY --from=build /usr/local/lib/node_modules /usr/local/lib/node_modules
 
-# Start Xvfb
-RUN Xvfb -ac -screen scrn 1280x2000x24 :9.0 &
-ENV DISPLAY=:9.0
-
 # This will copy all files in our root to the working  directory in the container
 COPY ./app ./
 
