@@ -16,6 +16,7 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-node:12-stretch-run
 RUN apt-get update && apt-get install -y \
   git \
   libgtk-3-0 \
+  libgtk2.0-0 \
   libgconf-2-4 \
   libasound2 \
   libxtst6 \
