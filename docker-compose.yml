@@ -31,7 +31,7 @@ services:
     ports:
       - 1234:1234
   mqtt:
-    image: pascaldevink/rpi-mosquitto
+    build: ./mqtt
     network_mode: host
     container_name: mqtt
     ports:
