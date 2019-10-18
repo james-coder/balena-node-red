@@ -8,7 +8,6 @@ services:
       - 'resin-data:/data'
     restart: always
     privileged: true
-    network_mode: host
     labels:
       io.balena.features.supervisor-api: '1'
     cap_add:
@@ -19,6 +18,7 @@ services:
       - "/dev/i2c-1:/dev/i2c-1"
       - "/dev/video0:/dev/video0"
       - "/dev/video1:/dev/video1"
+    network_mode: host
     ports:
       - 80:80
   rtl-amr:
@@ -32,18 +32,18 @@ services:
       - 1234:1234
   mqtt:
     build: ./mqtt
-    network_mode: host
     container_name: mqtt
+    restart: unless-stopped
+    network_mode: host
     ports:
       - 1883:1883
       - 9001:9001
-    restart: unless-stopped
-  mysql:
+  db:
     image: mysql:5.6
-    network_mode: host
-    ports:
-      - 3306:3306
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: Fc3qPNwyGJxPtQsX3585
+    network_mode: host
+    ports:
+      - 3306:3306
