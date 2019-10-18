@@ -32,11 +32,8 @@ services:
       - 1234:1234
   mqtt:
     image: pascaldevink/rpi-mosquitto
-    network_mode: bridge
+    network_mode: host
     container_name: mqtt
-    expose:
-      - 1883
-      - 9001
     ports:
       - 1883:1883
       - 9001:9001
