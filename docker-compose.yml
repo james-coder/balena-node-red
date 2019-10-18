@@ -30,3 +30,12 @@ services:
     network_mode: host
     ports:
       - 1234:1234
+  eclipse-mosquitto:
+    build: ./eclipse-mosquitto
+    volumes:
+      - 'resin-data:/mosquitto/'
+    restart: always
+    network_mode: host
+    ports:
+      - 1883:1883
+      - 9001:9001
