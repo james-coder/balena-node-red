@@ -28,7 +28,7 @@ while (my $line = <>) {
   if (!($line =~ /^{/)) { next; }
   my $row = decode_json($line);
   my $time = $row->{Time};
-  $time =~ s/T//;
+  $time =~ s/T/ /;
   $time =~ s/Z//;
   $rtlamr->create({
     time => $time,
