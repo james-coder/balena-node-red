@@ -21,7 +21,7 @@ use Collect::Data;
 #          };
 
 my $schema = Collect::Data->connect('dbi:mysql:database=data;host=192.168.99.201', 'root', '26815926535');
-my $rtlamr = $schema->resultset('rtlamr');
+my $rtlamr = $schema->resultset('Rtlamr');
 
 while (my $line = <>) {
   chomp $line;
