@@ -37,7 +37,7 @@ while (my $line = <>) {
     type => $row->{Message}->{Type},
     tamperphy => $row->{Message}->{TamperPhy},
     tamperenc => $row->{Message}->{TamperEnc},
-    consumption => $row->{Message}->{Consumption},
+    consumption => $row->{Message}->{Consumption} / 100,
     collection_device => 'james_home',
   })
 }
