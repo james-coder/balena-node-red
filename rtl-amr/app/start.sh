@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PERL5LIB=/usr/src/app/perl_modules
+
 echo "RTL-AMR Running!"
 /usr/local/bin/rtl_tcp &
 sleep 4

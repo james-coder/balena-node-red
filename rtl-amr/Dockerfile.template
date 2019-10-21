@@ -17,7 +17,7 @@ WORKDIR /usr/src/app
 # This will copy all files in our root to the working  directory in the container
 COPY ./app ./
 
-RUN cpanm Collect::Data
+RUN cpanm DBIx::Class::Schema
 
 RUN useradd -m -g root -G sudo aptly
 USER aptly
