@@ -24,7 +24,7 @@ services:
   rtl-amr:
     build: ./rtl-amr
     devices:
-      - '/dev/bus/usb:/dev/bus/usb'
+      - '/dev:/dev'
     restart: always
     privileged: true
     network_mode: host
