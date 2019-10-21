@@ -1,7 +1,7 @@
 #FROM alpine:3.6
 FROM balenalib/%%BALENA_MACHINE_NAME%%-node:11-buster
 
-RUN apt-get update && apt-get install -y wget apt-transport-https ca-certificates apt-utils musl-dev gcc make cmake pkgconf git libusb-1.0-0-dev build-essential golang libjson-xs-perl libdbix-class-schema-loader-perl libdbd-mysql
+RUN apt-get update && apt-get install -y wget apt-transport-https ca-certificates apt-utils musl-dev gcc make cmake pkgconf git libusb-1.0-0-dev build-essential golang libjson-xs-perl libdbix-class-schema-loader-perl libdbd-mysql-perl
 
 WORKDIR /usr/local/
 RUN git clone git://git.osmocom.org/rtl-sdr.git
