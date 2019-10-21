@@ -1,17 +1,24 @@
 #FROM alpine:3.6
 FROM balenalib/%%BALENA_MACHINE_NAME%%-node:11-buster
 
-RUN apt-get update && apt-get install -y wget apt-transport-https ca-certificates apt-utils musl-dev gcc make cmake pkgconf git libusb-1.0-0-dev build-essential golang libjson-xs-perl libdbix-class-schema-loader-perl libdbd-mysql-perl rtl-sdr
-
-#WORKDIR /usr/local/
-#RUN git clone git://git.osmocom.org/rtl-sdr.git
-
-#RUN mkdir /usr/local/rtl-sdr/build
-#WORKDIR /usr/local/rtl-sdr/build
-#RUN cmake ../ -DDETACH_KERNEL_DRIVER=ON
-#RUN make
-#RUN make install
-#RUN ldconfig
+RUN apt-get update && apt-get install -y apt-utils
+RUN apt-get install -y \
+	wget \
+	apt-transport-https \
+	ca-certificates \
+#	musl-dev \
+#	gcc \
+#	make \
+#	cmake \
+#	pkgconf \
+	git \
+	libusb-1.0-0-dev \
+	build-essential \
+	golang \
+	libjson-xs-perl \
+	libdbix-class-schema-loader-perl \
+	libdbd-mysql-perl \
+	rtl-sdr
 
 WORKDIR /usr/src/app
 # This will copy all files in our root to the working  directory in the container
@@ -26,9 +33,9 @@ RUN go get github.com/bemasher/rtlamr
 
 ###### !!!!MAY HAVE TO DO THESE STEPS MANUALLY ON THE HOST AFTER
 ###### HOST IS BOOTED!!!!
-CMD rmmod dvb_usb_rtl28xxu
-CMD rmmod dvb_usb_v2
-CMD rmmod rtl2832
-CMD rmmod dvb_core
+#CMD rmmod dvb_usb_rtl28xxu
+#CMD rmmod dvb_usb_v2
+#CMD rmmod rtl2832
+#CMD rmmod dvb_core
 
 CMD ["bash", "/usr/src/app/start.sh"]
