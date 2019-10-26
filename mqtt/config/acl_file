@@ -1,4 +1,4 @@
-user root
+user node-red
 topic read #
 topic write #
 
