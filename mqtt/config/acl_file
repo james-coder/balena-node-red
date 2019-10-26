@@ -1,0 +1,5 @@
+user root
+topic read #
+topic write #
+
+pattern readwrite %u/#
