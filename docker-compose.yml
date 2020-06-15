@@ -1,6 +1,11 @@
 version: '2'
 volumes:
     resin-data:
+    nagiosetc:
+    nagiosvar:
+    customplugins:
+    nagiosgraphvar:
+    nagiosgraphetc:
 services:
   node-red:
     build: ./node-red
@@ -39,3 +44,16 @@ services:
       - 1883:1883
       - 9001:9001
       - 8883:8883
+  nagios:
+    build: ./nagios
+    container_name: nagios
+    restart: unless-stopped
+    network_mode: host
+    ports:
+    - 8888:80
+    volumes:
+    - nagiosetc:/opt/nagios/etc
+    - nagiosvar:/opt/nagios/var
+    - customplugins:/opt/Custom-Nagios-Plugins
+    - nagiosgraphvar:/opt/nagiosgraph/var
+    - nagiosgraphetc:/opt/nagiosgraph/etc
