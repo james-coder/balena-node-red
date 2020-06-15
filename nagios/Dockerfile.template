@@ -1,5 +1,5 @@
 # Pull base image
-FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu-python:2.7.18-18.04
+FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu:bionic
 
 ENV NAGIOS_HOME            /opt/nagios
 ENV NAGIOS_USER            nagios
