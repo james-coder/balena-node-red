@@ -15,7 +15,7 @@ ENV NAGIOS_TIMEZONE        America/Denver
 ENV DEBIAN_FRONTEND        noninteractive
 ENV NG_NAGIOS_CONFIG_FILE  ${NAGIOS_HOME}/etc/nagios.cfg
 ENV NG_CGI_DIR             ${NAGIOS_HOME}/sbin
-ENV NG_WWW_DIR             ${NAGIOS_HOME}/share/nagiosgraph
+#ENV NG_WWW_DIR             ${NAGIOS_HOME}/share/nagiosgraph
 ENV NG_CGI_URL             /cgi-bin
 ENV NAGIOS_BRANCH          nagios-4.4.6
 ENV NAGIOS_PLUGINS_BRANCH  release-2.3.3
@@ -220,13 +220,13 @@ RUN chmod +x /usr/local/bin/start_nagios        && \
     chmod +x /etc/sv/apache/run                 && \
     chmod +x /etc/sv/nagios/run                 && \
     chmod +x /etc/sv/postfix/run                 && \
-    chmod +x /etc/sv/rsyslog/run                 && \
-    chmod +x /opt/nagiosgraph/etc/fix-nagiosgraph-multiple-selection.sh
+    chmod +x /etc/sv/rsyslog/run                
+#    chmod +x /opt/nagiosgraph/etc/fix-nagiosgraph-multiple-selection.sh
 
-RUN cd /opt/nagiosgraph/etc && \
-    sh fix-nagiosgraph-multiple-selection.sh
+#RUN cd /opt/nagiosgraph/etc && \
+#    sh fix-nagiosgraph-multiple-selection.sh
 
-RUN rm /opt/nagiosgraph/etc/fix-nagiosgraph-multiple-selection.sh
+#RUN rm /opt/nagiosgraph/etc/fix-nagiosgraph-multiple-selection.sh
 
 # enable all runit services
 RUN ln -s /etc/sv/* /etc/service
@@ -242,6 +242,6 @@ RUN echo "ServerName ${NAGIOS_FQDN}" > /etc/apache2/conf-available/servername.co
 
 EXPOSE 80
 
-VOLUME "${NAGIOS_HOME}/var" "${NAGIOS_HOME}/etc" "/var/log/apache2" "/opt/Custom-Nagios-Plugins" "/opt/nagiosgraph/var" "/opt/nagiosgraph/etc"
+VOLUME "${NAGIOS_HOME}/var" "${NAGIOS_HOME}/etc" "/var/log/apache2" "/opt/Custom-Nagios-Plugins" 
 
 CMD [ "/usr/local/bin/start_nagios" ]
