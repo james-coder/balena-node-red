@@ -86,6 +86,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         telnet                              \
         lsof                                \
         libsasl2-modules                    \
+        vim                                 \
                                                 && \
     apt-get clean && rm -Rf /var/lib/apt/lists/*
 
