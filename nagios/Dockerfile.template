@@ -1,6 +1,7 @@
 # Pull base image
 FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu:bionic
 
+
 ENV GUSER                  linagee@gmail.com
 ENV NAGIOS_HOME            /opt/nagios
 ENV NAGIOS_USER            nagios
