@@ -9,18 +9,20 @@ if ! [ "${MAIL_INET_PROTOCOLS}" = "" ]; then
 fi
 sed -i "s/myhostname =.*/myhostname = $(hostname)/" /etc/postfix/main.cf
 sed -i "s/mydestination =.*/mydestination = ${NAGIOS_FQDN}, \$myhostname, localhost.localdomain, localhost/" /etc/postfix/main.cf
-sed -i "s/smtp_sasl_auth_enable =.*/smtp_sasl_auth_enable = yes/" /etc/postfix/main.cf
-sed -i "s/smtp_sasl_security_options =.*/smtp_sasl_security_options = noanonymous/" /etc/postfix/main.cf
-sed -i "s/smtp_sasl_password_maps =.*/smtp_sasl_password_maps = hash:\/etc\/postfix\/sasl_passwd/" /etc/postfix/main.cf
-sed -i "s/smtp_use_tls =.*/smtp_use_tls = yes/" /etc/postfix/main.cf
-sed -i "s/smtp_tls_CAfile =.*/smtp_tls_CAfile = \/etc\/ssl\/certs\/ca-certificates.crt/" /etc/postfix/main.cf
-sed -i "s/virtual_alias_domains =.*/virtual_alias_domains = $(hostname)/" /etc/postfix/main.cf
-sed -i "s/virtual_alias_maps =.*/virtual_alias_maps = hash:\etc\postfix\/virtual/" /etc/postfix/main.cf
-
 sed -i "/^myorigin =.*/d" /etc/postfix/main.cf
+
+echo "smtp_sasl_auth_enable = yes" >> /etc/postfix/main.cf
+echo "smtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
+echo "smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd" >> /etc/postfix/main.cf
+echo "smtp_use_tls = yes" >> /etc/postfix/main.cf
+echo "smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt" >> /etc/postfix/main.cf
+echo "virtual_alias_domains = $(hostname)" >> /etc/postfix/main.cf
+echo "virtual_alias_maps = hash:/etc/postfix/virtual" >> /etc/postfix/main.cf
+
 echo "${NAGIOS_FQDN}" > /etc/mailname
 
-echo "${MAIL_RELAY_HOST} ${GUSER}:${GPASS}" > /etc/postfix/sasl_passwd
+mkdir -p /etc/postfix/sasl
+echo "${MAIL_RELAY_HOST} ${GUSER}:${GPASS}" > /etc/postfix/sasl/sasl_passwd
 postmap /etc/postfix/sasl/sasl_passwd
 
 #postfix runs in a chroot and needs resolv.conf to resolve hostnames
