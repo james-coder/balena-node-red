@@ -82,6 +82,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         unzip                               \
         python                              \
         telnet                              \
+        lsof                                \
                                                 && \
     apt-get clean && rm -Rf /var/lib/apt/lists/*
 

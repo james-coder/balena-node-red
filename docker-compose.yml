@@ -48,7 +48,6 @@ services:
     build: ./nagios
     container_name: nagios
     restart: unless-stopped
-    network_mode: host
     ports:
     - 8888:80
     volumes:
