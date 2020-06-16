@@ -1,7 +1,7 @@
 version: '2'
 volumes:
     resin-data:
-    nagiosetc2343:
+    nagiosetc2344:
     nagiosvar:
     customplugins:
     nagiosgraphvar:
@@ -51,7 +51,7 @@ services:
     ports:
     - 8888:80
     volumes:
-    - nagiosetc2343:/opt/nagios/etc
+    - nagiosetc2344:/opt/nagios/etc
     - nagiosvar:/opt/nagios/var
     - customplugins:/opt/Custom-Nagios-Plugins
     - nagiosgraphvar:/opt/nagiosgraph/var
