@@ -16,10 +16,9 @@ echo "smtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
 echo "smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd" >> /etc/postfix/main.cf
 echo "smtp_use_tls = yes" >> /etc/postfix/main.cf
 echo "smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt" >> /etc/postfix/main.cf
-echo "virtual_alias_domains = $(hostname)" >> /etc/postfix/main.cf
-echo "virtual_alias_maps = hash:/etc/postfix/virtual" >> /etc/postfix/main.cf
 
 echo "${NAGIOS_FQDN}" > /etc/mailname
+echo "root@$(hostname) jamesalton.ut@gmail.com" >> /etc/postfix/virtual
 
 mkdir -p /etc/postfix/sasl
 echo "${MAIL_RELAY_HOST} ${GUSER}:${GPASS}" > /etc/postfix/sasl/sasl_passwd
