@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
   libxss1 \
   libnss3 \
   xvfb \
+  libatomic-ops \
   fswebcam
 
 RUN JOBS=MAX npm install -g --production --unsafe-perm \
