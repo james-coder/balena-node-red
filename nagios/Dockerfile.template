@@ -3,14 +3,15 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu:bionic
 
 
 ENV GUSER                  linagee@gmail.com
+ENV NAGIOSJDAADMIN_USER       jamesa
+ENV NAGIOSSDGADMIN_USER       spencerg
+
 ENV NAGIOS_HOME            /opt/nagios
 ENV NAGIOS_USER            nagios
 ENV NAGIOS_GROUP           nagios
 ENV NAGIOS_CMDUSER         nagios
 ENV NAGIOS_CMDGROUP        nagios
 ENV NAGIOS_FQDN            nagios.example.com
-ENV NAGIOSADMIN_USER       nagiosadmin
-ENV NAGIOSADMIN_PASS       nagios
 ENV APACHE_RUN_USER        nagios
 ENV APACHE_RUN_GROUP       nagios
 ENV NAGIOS_TIMEZONE        America/Denver
@@ -146,11 +147,9 @@ RUN wget -O ${NAGIOS_HOME}/libexec/check_ncpa.py https://raw.githubusercontent.c
 
 RUN cd /tmp                    && \
     git clone https://github.com/NagiosEnterprises/nrpe.git -b $NRPE_BRANCH
-RUN cd nrpe                    && \
+RUN cd /tmp/nrpe                    && \
     autoconf                   && \
-    ./configure                                   \
-     --with-ssl=/usr/bin/openssl               \
-     --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+    ./configure
 RUN make check_nrpe
 RUN cp src/check_nrpe ${NAGIOS_HOME}/libexec/
 RUN make clean

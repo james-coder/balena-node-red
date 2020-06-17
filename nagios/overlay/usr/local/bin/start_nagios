@@ -15,7 +15,8 @@ if [ -z "$(ls -A /opt/nagios/var)" ]; then
 fi
 
 if [ ! -f "${NAGIOS_HOME}/etc/htpasswd.users" ] ; then
-  htpasswd -c -b -s "${NAGIOS_HOME}/etc/htpasswd.users" "${NAGIOSADMIN_USER}" "${NAGIOSADMIN_PASS}"
+  htpasswd -c -b -s "${NAGIOS_HOME}/etc/htpasswd.users" "${NAGIOSJDAADMIN_USER}" "${NAGIOSJDAADMIN_PASS}"
+  htpasswd -c -b -s "${NAGIOS_HOME}/etc/htpasswd.users" "${NAGIOSSDGADMIN_USER}" "${NAGIOSSDGADMIN_PASS}"
   chown -R ${NAGIOS_USER}.${NAGIOS_GROUP} "${NAGIOS_HOME}/etc/htpasswd.users"
 fi
 
