@@ -150,7 +150,7 @@ RUN cd /tmp                    && \
 RUN cd /tmp/nrpe                    && \
     autoconf                   && \
     ./configure
-RUN make check_nrpe
+RUN make all
 RUN cp src/check_nrpe ${NAGIOS_HOME}/libexec/
 RUN make clean
 RUN cd /tmp && rm -Rf nrpe
