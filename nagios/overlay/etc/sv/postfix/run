@@ -25,6 +25,7 @@ echo "${MAIL_RELAY_HOST} ${GUSER}:${GPASS}" > /etc/postfix/sasl/sasl_passwd
 postmap /etc/postfix/sasl/sasl_passwd
 
 #postfix runs in a chroot and needs resolv.conf to resolve hostnames
+echo "search utahwifi.online" >> /etc/resolv.conf
 cp /etc/resolv.conf /var/spool/postfix/etc/resolv.conf
 
 exec /usr/lib/postfix/sbin/master -d -c /etc/postfix

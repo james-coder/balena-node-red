@@ -144,16 +144,17 @@ RUN cd /tmp                                                                     
 RUN wget -O ${NAGIOS_HOME}/libexec/check_ncpa.py https://raw.githubusercontent.com/NagiosEnterprises/ncpa/v2.0.5/client/check_ncpa.py  && \
     chmod +x ${NAGIOS_HOME}/libexec/check_ncpa.py
 
-#RUN cd /tmp                    && \
-#    git clone https://github.com/NagiosEnterprises/nrpe.git -b $NRPE_BRANCH
-#RUN cd nrpe                    && \
-#    ./configure                                   \
-#     --with-ssl=/usr/bin/openssl               \
-#     --with-ssl-lib=/usr/lib/x86_64-linux-gnu
-#RUN make check_nrpe
-#RUN cp src/check_nrpe ${NAGIOS_HOME}/libexec/
-#RUN make clean
-#RUN cd /tmp && rm -Rf nrpe
+RUN cd /tmp                    && \
+    git clone https://github.com/NagiosEnterprises/nrpe.git -b $NRPE_BRANCH
+RUN cd nrpe                    && \
+    autoconf                   && \
+    ./configure                                   \
+     --with-ssl=/usr/bin/openssl               \
+     --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+RUN make check_nrpe
+RUN cp src/check_nrpe ${NAGIOS_HOME}/libexec/
+RUN make clean
+RUN cd /tmp && rm -Rf nrpe
 
 #RUN cd /tmp                                                          && \
 #    git clone https://git.code.sf.net/p/nagiosgraph/git nagiosgraph  && \
