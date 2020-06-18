@@ -147,12 +147,12 @@ RUN wget -O ${NAGIOS_HOME}/libexec/check_ncpa.py https://raw.githubusercontent.c
 
 RUN cd /tmp                    && \
     git clone https://github.com/NagiosEnterprises/nrpe.git -b $NRPE_BRANCH
-RUN cd /tmp/nrpe                    && \
+RUN cd /tmp/nrpe               && \
     autoconf                   && \
-    ./configure
-RUN make all
-RUN cp src/check_nrpe ${NAGIOS_HOME}/libexec/
-RUN make clean
+    ./configure                && \
+    make all                   && \
+    cp src/check_nrpe ${NAGIOS_HOME}/libexec/   &&\
+    make clean
 RUN cd /tmp && rm -Rf nrpe
 
 #RUN cd /tmp                                                          && \
